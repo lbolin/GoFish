@@ -12,10 +12,11 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <Button Content="Play" Margin="408,281,0,0" VerticalAlignment="Top" Height="160" Width="665" FontSize="70"/>
-        <Button Content="Settings" Margin="408,506,0,0" Height="160" Width="665" VerticalAlignment="Top" FontSize="70"/>
+        <Button Content="Play" Margin="408,314,0,0" VerticalAlignment="Top" Height="160" Width="665" FontSize="70"/>
+        <Button Content="Settings" Margin="408,530,0,0" Height="160" Width="665" VerticalAlignment="Top" FontSize="70"/>
         <Button Content="About" Margin="408,752,0,0" Height="160" Width="665" VerticalAlignment="Top" FontSize="70"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,64,0,0" Text="Go Fish !" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="100"/>
+        <Image Margin="428,41,434,723" Source="Assets/gofishlogo.png"/>
+
 
     </Grid>
 </Page>

@@ -41,5 +41,10 @@ namespace GoFish
         {
             this.Frame.Navigate(typeof(Play));
         }
+
+        private void HighScore_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HighScore));
+        }
     }
 }

@@ -16,7 +16,7 @@
   <Properties>
     <DisplayName>GoFish</DisplayName>
     <PublisherDisplayName>lauren</PublisherDisplayName>
-    <Logo>Assets\gofishlogo.png</Logo>
+    <Logo>Assets\images\gofishlogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -34,11 +34,11 @@
       <uap:VisualElements
         DisplayName="GoFish"
         Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\gofishlogo.png"
+        Square44x44Logo="Assets\images\gofishlogo.png"
         Description="GoFish"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\gofishlogo.png"/>
+        <uap:SplashScreen Image="Assets\images\gofishlogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>

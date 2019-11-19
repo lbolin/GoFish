@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/water.jpeg"></ImageBrush>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <Image Source="Assets/About.png" Margin="256,0,280,672"></Image>
+        <Image Source="Assets/images/About.png" Margin="256,0,280,672"></Image>
     </Grid>
 </Page>

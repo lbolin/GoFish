@@ -12,10 +12,10 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <Button x:Name ="Play" Content="Play" Margin="402,314,0,0" VerticalAlignment="Top" Height="160" Width="665" FontSize="70" Click="PlayBtn_Click"/>
-        <Button x:Name ="Settings" Content="Settings" Margin="402,530,0,0" Height="160" Width="665" VerticalAlignment="Top" FontSize="70" Click="SettingBtn_Click"/>
-        <Button x:Name ="About" Content="About" Margin="402,752,0,0" Height="160" Width="665" VerticalAlignment="Top" FontSize="70" Click="AboutBtn_Click"/>
-        <Image Margin="428,41,434,723" Source="Assets/gofishlogo.png"/>
+        <Button x:Name ="Play" Content="Play" Margin="0,314,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="160" Width="665" FontSize="70" Click="PlayBtn_Click"/>
+        <Button x:Name ="Settings" Content="Settings" Margin="0,530,0,0" HorizontalAlignment="Center" Height="160" Width="665" VerticalAlignment="Top" FontSize="70" Click="SettingBtn_Click"/>
+        <Button x:Name ="About" Content="About" Margin="0,752,0,0" HorizontalAlignment="Center" Height="160" Width="665" VerticalAlignment="Top" FontSize="70" Click="AboutBtn_Click"/>
+        <Image Margin="0,41,0,0" VerticalAlignment="Top" Width="500" Source="Assets/gofishlogo.png"/>
 
 
     </Grid>

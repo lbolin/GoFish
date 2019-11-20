@@ -26,5 +26,25 @@ namespace GoFish
         {
             this.InitializeComponent();
         }
+
+        private void WoodRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OceanRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DarkRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LightRadioBtn_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

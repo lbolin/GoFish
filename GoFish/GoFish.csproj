@@ -156,6 +156,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\images\About.png" />
+    <Content Include="Assets\images\back1.png" />
+    <Content Include="Assets\images\back2.png" />
     <Content Include="Assets\Woodland\Acorn1.png" />
     <Content Include="Assets\Woodland\Acorn2.png" />
     <Content Include="Assets\Woodland\Acorn3.png" />

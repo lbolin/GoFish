@@ -32,9 +32,9 @@ namespace GoFish.ViewModels
             }
         }
 
-        public CardViewModel(int number, int suit)
+        public CardViewModel(Card c)
         {
-            myCard = new Card(number, suit);
+            myCard = c;
         }
 
         public bool match(CardViewModel cvm)

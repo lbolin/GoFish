@@ -8,5 +8,20 @@ namespace GoFish.ViewModels
 {
     class GameState
     {
+        private List<HighScore> highScores;
+        public int Theme { get; }
+        public int Deck { get; }
+        public int numPlayers { get; }
+
+        public int typeOfGame { get; }
+
+        public GameState(int theme,int deck, int numplayers)
+        {
+            Theme = theme;
+            Deck = deck;
+            numPlayers = numplayers;
+                
+
+        }
     }
 }

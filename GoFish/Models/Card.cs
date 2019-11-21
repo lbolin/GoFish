@@ -19,6 +19,15 @@ namespace GoFish.Models
 
         public bool match(Card c)
         {
+            if (c.Suit == Suit && c.Number == Number)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool goFishMatch(Card c)
+        {
             if (c.Suit == Suit)
             {
                 return true;

@@ -42,6 +42,11 @@ namespace GoFish.ViewModels
             return myCard.match(cvm.myCard);
         }
 
+        public bool goFishMatch(CardViewModel cvm)
+        {
+            return myCard.goFishMatch(cvm.myCard);
+        }
+
         private void OnPropertyChanged(string property)
         {
             // Notify any controls bound to the ViewModel that the property changed

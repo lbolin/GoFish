@@ -52,12 +52,12 @@ namespace GoFish.Models
             return false;
         }
 
-        public void hasMatch(Card c)
+        public bool hasMatch(Card c)
         {
             bool match = false;
             foreach (Card card in cards)
             {
-                if (card.match(c))
+                if (card.goFishMatch(c))
                 {
                     match = true;
                 }

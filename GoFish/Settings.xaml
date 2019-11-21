@@ -6,18 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="586" Width="518" >
 
-    <Grid>
+    <Grid >
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <TextBlock HorizontalAlignment="Left" Margin="0,49,0,0" Text="Settings" TextWrapping="Wrap"   VerticalAlignment="Top" Height="123" Width="389" FontSize="100" FontFamily="Constantia" Foreground="Black" RenderTransformOrigin="0.42,0.482"/>
-        <TextBlock HorizontalAlignment="Left" Margin="0,304,0,0" Text="Card Style :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="100" FontFamily="Constantia" Foreground="Black" />
-        <TextBlock HorizontalAlignment="Right" Margin="0,313,189,0" Text="Mode :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="100" FontFamily="Constantia" Foreground="Black" />
-        <RadioButton HorizontalAlignment="Left" Content="Woodland Creatures" Margin="0,0,0,0"  FontSize="30" FontFamily="Constantia" Foreground="Black" Checked="WoodRadioBtn_Checked"/>
-        <RadioButton HorizontalAlignment="Left" Content="Ocean Animals" Margin="0,554,0,0"  FontSize="30" FontFamily="Constantia" Foreground="Black" VerticalAlignment="Top" Checked="OceanRadioBtn_Checked"/>
-        <RadioButton HorizontalAlignment="Right" Content="Dark" Margin="0,458,195,0" FontSize="30" FontFamily="Constanta" Foreground ="Black" VerticalAlignment="Top" Checked="DarkRadioBtn_Checked"/>
-        <RadioButton HorizontalAlignment ="Right" Content="Light" Margin="0,518,192,0" FontSize="30" FontFamily="Constanta" Foreground ="Black" VerticalAlignment="Top" Checked="LightRadioBtn_Checked"/>
+        <TextBlock HorizontalAlignment="Left"  Text="Settings" TextWrapping="Wrap"   VerticalAlignment="Top" Height="123" Width="389" FontSize="80" FontFamily="Constantia" Foreground="Black" Margin="110,0,0,0" />
+        <TextBlock HorizontalAlignment="Left" Margin="15,121,0,0" Text="Card Style :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Constantia" Foreground="Black" />
+        <TextBlock HorizontalAlignment="Left" Text="Mode :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Constantia" Foreground="Black" Margin="9,352,0,0" />
+        <RadioButton  GroupName="1" Content="Woodland Creatures"  FontSize="36" FontFamily="Constantia" Foreground="Black" Checked="WoodRadioBtn_Checked" Margin="15,226,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName ="1" Content="Ocean Animals"  FontSize="36" FontFamily="Constantia" Foreground="Black" Checked="OceanRadioBtn_Checked" Margin="15,290,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="2" Content="Dark" FontSize="30" FontFamily="Constanta" Foreground ="Black" Checked="DarkRadioBtn_Checked"  Margin="15,512,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="2" Content="Light" Margin="15,452,0,0" FontSize="36" FontFamily="Constanta" Foreground ="Black" VerticalAlignment="Top" Checked="LightRadioBtn_Checked" />
     </Grid>
 </Page>

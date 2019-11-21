@@ -26,5 +26,10 @@ namespace GoFish
         {
             this.InitializeComponent();
         }
+
+        private void PlayGameBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(gamePlay));
+        }
     }
 }

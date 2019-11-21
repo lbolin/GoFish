@@ -8,5 +8,22 @@ namespace GoFish.Models
 {
     class Card
     {
+        public int Number { get; }
+        public int Suit { get; }
+
+        public Card(int number, int suit)
+        {
+            Number = number;
+            Suit = suit;
+        }
+
+        public bool match(Card c)
+        {
+            if (c.Suit == Suit)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

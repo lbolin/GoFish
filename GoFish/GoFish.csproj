@@ -131,6 +131,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameState.cs" />
+    <Compile Include="Models\Hand.cs" />
+    <Compile Include="Models\HighScore.cs" />
     <Compile Include="Play.xaml.cs">
       <DependentUpon>Play.xaml</DependentUpon>
     </Compile>
@@ -138,6 +143,11 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CardViewModel.cs" />
+    <Compile Include="ViewModels\GameState.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\HandViewModel.cs" />
+    <Compile Include="ViewModels\HighScoreViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

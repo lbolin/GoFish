@@ -19,10 +19,13 @@ namespace GoFish.Models
             Time = time;
         }
 
-        public HighScore GetHighScore(int score)
-        {
+        //public HighScore GetHighScore(int score)
+        //{
+        //    int highScore = 0;
+       //     for(int i = 0;i<score;i++)
+        //        if()
 
-        }
+        //}
 
     }
 }

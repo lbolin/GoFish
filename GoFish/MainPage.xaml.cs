@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,13 @@ namespace GoFish
         public MainPage()
         {
             this.InitializeComponent();
+
+            // https://social.msdn.microsoft.com/Forums/en-US/c7633964-8744-44ae-b5ee-dafc3bb1d534/how-do-i-set-the-default-window-size-of-universal-windows-apps-on-the-desktop
+            ApplicationView.PreferredLaunchViewSize = new Size(600, 600);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            // if you want not to have any window smaller than this size...
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600,600));
         }
 
         private void AboutBtn_Click(object sender, RoutedEventArgs e)

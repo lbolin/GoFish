@@ -8,10 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
-        </Grid.Background>
+    <Grid Background="Beige">
+       
         <Image Source="Assets/images/About.png" Margin="222,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150"></Image>
         <TextBlock HorizontalAlignment="Left" Margin="43,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="115" Width="551" FontSize="30" FocusVisualPrimaryBrush="#FFCE2E2E">
             <Run Text="Authors: Lauren Bolin &amp; Matthew Emlaw"/><LineBreak/><Run Text="Description:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><LineBreak/><Run/></TextBlock>

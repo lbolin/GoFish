@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="Beige">
+    <Grid Name="mainGrid" Background="Beige">
         <Ellipse HorizontalAlignment="Center" Height="200" Stroke="Black" VerticalAlignment="Center" Width="200"  RenderTransformOrigin="0.45,0.49" Fill="LightBlue"/>
         <RelativePanel Margin="0,0,10,0"/>
 

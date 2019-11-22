@@ -8,13 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
-        </Grid.Background>
-        <Image Source="Assets/images/About.png" Margin="343,6,425,715"></Image>
-        <TextBlock HorizontalAlignment="Left" Margin="178,361,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="163" Width="948" FontSize="50" FocusVisualPrimaryBrush="#FFCE2E2E"><Run Text="Authors: Lauren Bolin &amp; Matthew Emlaw"/><LineBreak/><Run Text="Description:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><LineBreak/><Run/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="213,498,0,0" Text="Go Fish is a card game where 5 cards are dealt to each player (a group of 2, 3 or 4 people). The remaining cards are messed up, face down between the players.                     Players hold their cards so they are able to see them, but no one else can." TextWrapping="Wrap" 
-                   VerticalAlignment="Top" Height="163" Width="1069" FontSize="30"/>
+    <Grid Background="Beige">
+       
+        <Image Source="Assets/images/About.png" Margin="222,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="150"></Image>
+        <TextBlock HorizontalAlignment="Left" Margin="43,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="115" Width="551" FontSize="30" FocusVisualPrimaryBrush="#FFCE2E2E">
+            <Run Text="Authors: Lauren Bolin &amp; Matthew Emlaw"/><LineBreak/><Run Text="Description:"/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="65,172,0,0" TextWrapping="Wrap" 
+                   VerticalAlignment="Top" Height="295" Width="461" FontSize="25" Text="Go Fish is a card game where 5 cards are dealt to each player (a group of 2, 3 or 4 people). The remaining cards are messed up, face down between the players. Players hold their cards so they are able to see them, but no one else can."/>
     </Grid>
 </Page>

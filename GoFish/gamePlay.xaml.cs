@@ -27,6 +27,8 @@ namespace GoFish
     {
         private GameViewModel game = new GameViewModel();
 
+        private int selectedCard = -1;
+
         public gamePlay()
         {
             this.InitializeComponent();
@@ -50,9 +52,19 @@ namespace GoFish
                 if (cardNumber.Length == 1) cardNumber = "0" + cardNumber;
                                 
                 var newCard = NewImage("Assets/Woodland/" + cardNumber + "-" + card.Suit + ".png");
-                newCard.Width = 80;
-                newCard.Height = 110;
+                if (card.Number == selectedCard / 10 && card.Suit == selectedCard % 10)
+                {
+                    newCard.Width = 100;
+                    newCard.Height = 140;
+                }
+                else
+                {
+                    newCard.Width = 80;
+                    newCard.Height = 110;
+                }
                 newCard.Margin = new Thickness(2, 0, 2, 0);
+                newCard.Tapped += SelectCard;
+                newCard.Tag = card;
                 myCards.Children.Add(newCard);
             }
 
@@ -64,6 +76,13 @@ namespace GoFish
                 newCard.Margin = new Thickness(2, 0, 2, 0);
                 opponentCards.Children.Add(newCard);
             }
+        }
+
+        private void SelectCard(object sender, TappedRoutedEventArgs e)
+        {
+            var card = ((sender as Image)?.Tag as CardViewModel);
+            selectedCard = card.Number * 10 + card.Suit;
+            Draw();
         }
 
         public Image NewImage(string path)

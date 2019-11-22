@@ -11,7 +11,8 @@
     <Grid Name="mainGrid" Background="Beige">
         <Ellipse HorizontalAlignment="Center" Height="200" Stroke="Black" VerticalAlignment="Center" Width="200"  RenderTransformOrigin="0.45,0.49" Fill="LightBlue"/>
         <RelativePanel Margin="0,0,10,0"/>
-
+        <StackPanel Orientation="Horizontal" Name="myCards" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Center"></StackPanel>
+        <StackPanel Orientation="Horizontal" Name="opponentCards" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center"></StackPanel>
 
     </Grid>
 </Page>

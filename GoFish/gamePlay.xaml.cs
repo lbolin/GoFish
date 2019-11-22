@@ -31,15 +31,39 @@ namespace GoFish
         {
             this.InitializeComponent();
 
+            var img = NewImage("Assets/images/back1.png");
+            img.Width = 100;
+            img.Height = 100;
+            mainGrid.Children.Add(img);
+
             Draw();
         }
 
         public void Draw()
         {
-            var img = NewImage("Assets/images/back1.png");
-            img.Width = 100;
-            img.Height = 100;
-            mainGrid.Children.Add(img);
+            myCards.Children.Clear();
+            opponentCards.Children.Clear();
+
+            foreach (var card in game.Hands[1].Cards)
+            {
+                string cardNumber = card.Number.ToString();
+                if (cardNumber.Length == 1) cardNumber = "0" + cardNumber;
+                                
+                var newCard = NewImage("Assets/Woodland/" + cardNumber + "-" + card.Suit + ".png");
+                newCard.Width = 80;
+                newCard.Height = 110;
+                newCard.Margin = new Thickness(2, 0, 2, 0);
+                myCards.Children.Add(newCard);
+            }
+
+            foreach (var card in game.Hands[2].Cards)
+            {
+                var newCard = NewImage("Assets/images/back1.png");
+                newCard.Width = 80;
+                newCard.Height = 110;
+                newCard.Margin = new Thickness(2, 0, 2, 0);
+                opponentCards.Children.Add(newCard);
+            }
         }
 
         public Image NewImage(string path)

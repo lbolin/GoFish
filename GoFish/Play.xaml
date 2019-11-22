@@ -12,6 +12,6 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <Button Content="Play" Margin="477,569,0,0" FontSize="40" VerticalAlignment="Top" Height="182" Width="363" Click="PlayGameBtn_Click"/>
+        <Button Content="Play" Margin="165,171,0,0" FontSize="40" VerticalAlignment="Top" Height="182" Width="363" Click="PlayGameBtn_Click"/>
     </Grid>
 </Page>

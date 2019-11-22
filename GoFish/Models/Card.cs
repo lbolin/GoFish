@@ -17,22 +17,14 @@ namespace GoFish.Models
             Suit = suit;
         }
 
-        public bool match(Card c)
+        public bool Match(Card c)
         {
-            if (c.Suit == Suit && c.Number == Number)
-            {
-                return true;
-            }
-            return false;
+             return (c.Suit == Suit && c.Number == Number);
         }
 
-        public bool goFishMatch(Card c)
+        public bool GoFishMatch(Card c)
         {
-            if (c.Suit == Suit)
-            {
-                return true;
-            }
-            return false;
+            return c.Suit == Suit;
         }
     }
 }

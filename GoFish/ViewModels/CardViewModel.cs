@@ -14,13 +14,13 @@ namespace GoFish.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Card myCard;
+        private Card card;
 
         public int Number
         {
             get
             {
-                return myCard.Number;
+                return card.Number;
             }
         }
 
@@ -28,23 +28,28 @@ namespace GoFish.ViewModels
         {
             get
             {
-                return myCard.Suit;
+                return card.Suit;
             }
         }
 
         public CardViewModel(Card c)
         {
-            myCard = c;
+            card = c;
         }
 
-        public bool match(CardViewModel cvm)
+        public bool Match(CardViewModel cvm)
         {
-            return myCard.match(cvm.myCard);
+            return card.Match(cvm.card);
         }
 
-        public bool goFishMatch(CardViewModel cvm)
+        public bool GoFishMatch(CardViewModel cvm)
         {
-            return myCard.goFishMatch(cvm.myCard);
+            return card.GoFishMatch(cvm.card);
+        }
+
+        public Card GetModel()
+        {
+            return card;
         }
 
         private void OnPropertyChanged(string property)

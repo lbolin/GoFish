@@ -8,7 +8,7 @@ namespace GoFish.Models
 {
     class Hand
     {
-        private List<Card> cards;
+        public List<Card> cards;
 
         public Hand(bool fullDeck = false)
         {
@@ -25,48 +25,8 @@ namespace GoFish.Models
                     }
                 }
             }
-        }
 
-        public List<Card> getCards()
-        {
-            List<Card> newCards = new List<Card>(cards);
-            return newCards;
-        }
-
-        public void addCard(Card c)
-        {
-            cards.Add(c);
-        }
-
-        public bool removeCard(Card c)
-        {
-            return false;
-        }
-
-        public bool isEmpty()
-        {
-            if (cards.Count == 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool hasMatch(Card c)
-        {
-            bool match = false;
-            foreach (Card card in cards)
-            {
-                if (card.goFishMatch(c))
-                {
-                    match = true;
-                }
-            }
-            return match;
-        }
-
-        public void shuffle()
-        {
+            //shuffle the deck once it is created
             Random random = new Random();
             for (int i = 0; i < 5000; i++)
             {

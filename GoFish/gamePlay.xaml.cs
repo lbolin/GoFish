@@ -73,6 +73,7 @@ namespace GoFish
                 var newCard = NewImage("Assets/images/back1.png");
                 newCard.Width = 80;
                 newCard.Height = 110;
+                newCard.Tapped += RequestCard;
                 newCard.Margin = new Thickness(2, 0, 2, 0);
                 opponentCards.Children.Add(newCard);
             }
@@ -94,6 +95,34 @@ namespace GoFish
             bitmapImage.UriSource = new Uri("ms-appx:///" + path);
             img.Source = bitmapImage;
             return img;
+        }
+        
+        public void RequestCard(object sender, TappedRoutedEventArgs e)
+        {
+            if (game.Hands[2].HasMatch(selectedCard / 10)){
+                //got'm
+                var cardsToSwap = new List<CardViewModel>();
+                foreach (CardViewModel c in game.Hands[2].Cards)
+                {
+                    if (c.Number == selectedCard / 10)
+                    {
+                        cardsToSwap.Add(c);
+                    }
+                }
+
+                foreach (var c in cardsToSwap)
+                {
+                    game.Hands[1].Cards.Add(c);
+                    game.Hands[2].Cards.Remove(c);
+                }
+            }
+            else
+            {
+                //Go Fish!
+                game.Hands[1].Cards.Add(game.Hands[0].Cards[0]);
+                game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
+            }
+            Draw();
         }
     }
 }

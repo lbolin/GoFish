@@ -32,6 +32,19 @@ namespace GoFish.ViewModels
 
         }
 
+        public bool HasMatch(int value)
+        {
+            bool result = false;
+            foreach (CardViewModel card in Cards)
+            {
+                if (card.Number == value)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, e);

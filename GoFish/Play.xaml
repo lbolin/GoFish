@@ -6,12 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="600" Width="600">
 
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <Button Content="Play" Margin="165,171,0,0" FontSize="40" VerticalAlignment="Top" Height="182" Width="363" Click="PlayGameBtn_Click"/>
+        <Button Content="Play" Margin="0,457,0,0" FontSize="40" VerticalAlignment="Top" Height="68" Width="232" Click="PlayGameBtn_Click" HorizontalAlignment="Center"/>
+        <Button Content="1 Player" Margin="70,139,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <Button Content="2 Players" Margin="69,209,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <Button Content="3 Players" Margin="69,281,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,62,0,0" Text="Number of Players:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="48" Width="259" FontFamily="Constanta" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Left" Margin="367,62,0,0" Text="Card Theme:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="30" Width="175" FontFamily="Constanta" FontSize="30"/>
+        <Image VerticalAlignment="Top" Height="122"  Source="Assets/Sea/09-2.png" Margin="423,134,86,0"/>
+        <Image VerticalAlignment="Top" Height="119" Width="85"  Source="Assets/Woodland/05-1.png" Margin="411,284,74,0"  />
+
     </Grid>
 </Page>

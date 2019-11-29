@@ -20,7 +20,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="37,108,0,0" Text="Number of Players:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="48" Width="259" FontFamily="Constanta" FontSize="30"/>
         <TextBlock HorizontalAlignment="Left" Margin="367,106,0,0" Text="Card Theme:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="30" Width="175" FontFamily="Constanta" FontSize="30"/>
         <Image VerticalAlignment="Top" Height="122"  Source="Assets/Sea/09-2.png" Margin="423,158,86,0"/>
-        <Image VerticalAlignment="Top" Height="119" Width="85"  Source="Assets/Woodland/05-1.png" Margin="426,296,89,0"  />
+        <Image VerticalAlignment="Top" Height="119" Width="85"  Source="Assets/Woodland/05-1.png" Margin="426,296,89,0"/>
 
     </Grid>
 </Page>

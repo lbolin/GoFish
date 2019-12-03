@@ -184,6 +184,11 @@ namespace GoFish
                 Draw();
             });
             selectionLocked = false;
+
+            if (game.GameOver)
+            {
+                //end game here
+            }
         }
 
         public async void MakeOpponentMove()

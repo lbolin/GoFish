@@ -8,5 +8,15 @@ namespace GoFish.Models
 {
     class GameState
     {
+        public List<HighScore> HighScores;
+        public bool usingLightTheme;
+        public bool usingWoodlandDeck;
+
+        public GameState()
+        {
+            usingLightTheme = true;
+            usingWoodlandDeck = true;
+            HighScores = new List<HighScore>();
+        }
     }
 }

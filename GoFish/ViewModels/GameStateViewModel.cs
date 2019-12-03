@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GoFish.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,20 +10,23 @@ namespace GoFish.ViewModels
 {
     class GameStateViewModel
     {
-        private List<HighScore> highScores;
-        public int Theme { get; }
-        public int Deck { get; }
-        public int numPlayers { get; }
+        private GameState gameState;
 
-        public int typeOfGame { get; }
+        public ObservableCollection<HighScoreViewModel> HighScores;
+        public bool UsingLightTheme { get; }
+        public bool UsingWoodlandDeck { get; }
 
-        public GameStateViewModel(int theme,int deck, int numplayers)
+        public GameStateViewModel()
         {
-            Theme = theme;
-            Deck = deck;
-            numPlayers = numplayers;
-                
+            gameState = new GameState();
 
+            UsingLightTheme = true;
+            UsingWoodlandDeck = true;                
+            
+            foreach (var hs in gameState.HighScores)
+            {
+                HighScores.Add(new HighScoreViewModel(hs));
+            }
         }
     }
 }

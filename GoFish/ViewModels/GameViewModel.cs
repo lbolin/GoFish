@@ -18,6 +18,12 @@ namespace GoFish.ViewModels
         public ObservableCollection<HandViewModel> Hands { get; set; }
         public ObservableCollection<int> Scores { get; set; }
 
+        private bool gameOver = false;
+        public bool GameOver
+        {
+            get { return gameOver; }
+        }
+
         public GameViewModel()
         {
             game = new Game();
@@ -86,6 +92,18 @@ namespace GoFish.ViewModels
                         Hands[0].Cards.RemoveAt(0);
                     }
                 }
+            }
+            bool isGameOver = true;
+            foreach (var h in Hands)
+            {
+                if (h.Cards.Count() > 0)
+                {
+                    isGameOver = false;
+                }
+            }
+            if (isGameOver)
+            {
+                gameOver = true;
             }
         }
 

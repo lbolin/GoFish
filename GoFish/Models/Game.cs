@@ -13,10 +13,10 @@ namespace GoFish.Models
         public Game()
         {
             Hands = new List<Hand>();
-            Scores = new List<int>(2);
-            for (int i = 0; i < Scores.Count(); i++)
+            Scores = new List<int>();
+            for (int i = 0; i < 2; i++)
             {
-                Scores[i] = 0;
+                Scores.Add(0);
             }
 
             Hand opponent= new Hand();

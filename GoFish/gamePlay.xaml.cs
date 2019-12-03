@@ -32,19 +32,18 @@ namespace GoFish
         public gamePlay()
         {
             this.InitializeComponent();
-
-            var img = NewImage("Assets/images/back1.png");
-            img.Width = 100;
-            img.Height = 100;
-            mainGrid.Children.Add(img);
-
+            
             Draw();
         }
 
         public void Draw()
         {
+            myScore.Text = game.Scores[0].ToString();
+            opponentScore.Text = game.Scores[1].ToString();
+
             myCards.Children.Clear();
             opponentCards.Children.Clear();
+            deck.Children.Clear();
 
             foreach (var card in game.Hands[1].Cards)
             {
@@ -54,13 +53,13 @@ namespace GoFish
                 var newCard = NewImage("Assets/Woodland/" + cardNumber + "-" + card.Suit + ".png");
                 if (card.Number == selectedCard / 10 && card.Suit == selectedCard % 10)
                 {
-                    newCard.Width = 100;
-                    newCard.Height = 140;
+                    newCard.Width = 80;
+                    newCard.Height = 110;
                 }
                 else
                 {
-                    newCard.Width = 80;
-                    newCard.Height = 110;
+                    newCard.Width = 65;
+                    newCard.Height = 90;
                 }
                 newCard.Margin = new Thickness(2, 0, 2, 0);
                 newCard.Tapped += SelectCard;
@@ -71,12 +70,22 @@ namespace GoFish
             foreach (var card in game.Hands[2].Cards)
             {
                 var newCard = NewImage("Assets/images/back1.png");
-                newCard.Width = 80;
-                newCard.Height = 110;
+                newCard.Width = 65;
+                newCard.Height = 90;
                 newCard.Tapped += RequestCard;
                 newCard.Margin = new Thickness(2, 0, 2, 0);
                 opponentCards.Children.Add(newCard);
             }
+
+            if (game.Hands[0].Cards.Count() != 0)
+            {
+                var img = NewImage("Assets/images/back1.png");
+                img.Width = 100;
+                img.Height = 100;
+                deck.Children.Add(img);
+            }
+
+
         }
 
         private void SelectCard(object sender, TappedRoutedEventArgs e)
@@ -119,11 +128,54 @@ namespace GoFish
             else
             {
                 //Go Fish!
-                game.Hands[1].Cards.Add(game.Hands[0].Cards[0]);
-                game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
+                if (game.Hands[0].Cards.Count > 0)
+                {
+                    game.Hands[1].Cards.Add(game.Hands[0].Cards[0]);
+                    game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);                    
+                }
+
+                MakeOpponentMove();
             }
             game.PostMoveRefresh();
             Draw();
+        }
+
+        public void MakeOpponentMove()
+        {
+            Random random = new Random();
+            int numberAskingFor = game.Hands[2].Cards[random.Next(0, game.Hands[2].Cards.Count() - 1)].Number;
+
+            if (game.Hands[1].HasMatch(numberAskingFor))
+            {
+                //got'm
+                var cardsToSwap = new List<CardViewModel>();
+                foreach (CardViewModel c in game.Hands[1].Cards)
+                {
+                    if (c.Number == numberAskingFor)
+                    {
+                        cardsToSwap.Add(c);
+                    }
+                }
+
+                foreach (var c in cardsToSwap)
+                {
+                    game.Hands[2].Cards.Add(c);
+                    game.Hands[1].Cards.Remove(c);
+                }
+
+                game.PostMoveRefresh();
+                MakeOpponentMove();
+            }
+            else
+            {
+                //Go Fish!
+                if (game.Hands[0].Cards.Count > 0)
+                {
+                    game.Hands[2].Cards.Add(game.Hands[0].Cards[0]);
+                    game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
+                }
+            }
+            game.PostMoveRefresh();
         }
     }
 }

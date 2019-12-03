@@ -64,11 +64,12 @@ namespace GoFish.ViewModels
                     if (cards[j] == 4)
                     {
                         //remove all four of the cards
-                        foreach (var c in Hands[i].Cards)
+                        for (int k = 0; k < Hands[i].Cards.Count(); k++)
                         {
-                            if (c.Number == j)
+                            if (Hands[i].Cards[k].Number == j)
                             {
-                                Hands[i].Cards.Remove(c);
+                                Hands[i].Cards.RemoveAt(k);
+                                k--;
                             }
                         }
                         //add point
@@ -81,9 +82,8 @@ namespace GoFish.ViewModels
                 {
                     for (int j = 0; j < 5 && Hands[0].Cards.Count() > 0; j++)
                     {
-                        var c = Hands[0].Cards[0];
-                        Hands[i].Cards.Add(c);
-                        Hands[0].Cards.Remove(c);
+                        Hands[i].Cards.Add(Hands[0].Cards[0]);
+                        Hands[0].Cards.RemoveAt(0);
                     }
                 }
             }

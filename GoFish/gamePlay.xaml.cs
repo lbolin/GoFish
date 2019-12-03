@@ -29,6 +29,7 @@ namespace GoFish
     {
         private GameViewModel game = new GameViewModel();
 
+        private int opponentSelectedCardIndex = -1;
         private int selectedCard = -1;
         private bool selectionLocked = false;
 
@@ -70,9 +71,16 @@ namespace GoFish
                 myCards.Children.Add(newCard);
             }
 
-            foreach (var card in game.Hands[2].Cards)
+            for (int i = 0; i < game.Hands[2].Cards.Count(); i++)
             {
                 var newCard = NewImage("Assets/images/back1.png");
+                
+                if (i == opponentSelectedCardIndex)
+                {
+                    string number = game.Hands[2].Cards[i].Number.ToString();
+                    if (number.Length == 1) number = "0" + number;
+                    newCard = NewImage("Assets/Woodland/" + number + "-" + game.Hands[2].Cards[i].Suit.ToString() + ".png");
+                }
                 newCard.Width = 65;
                 newCard.Height = 90;
                 newCard.Tapped += RequestCard;
@@ -109,9 +117,10 @@ namespace GoFish
             img.Source = bitmapImage;
             return img;
         }
-        
+
         public async void RequestCard(object sender, TappedRoutedEventArgs e)
         {
+            if (selectionLocked || selectedCard == -1) return;
             await Task.Run(() => CardRequestSequenceMessages());            
         }
 
@@ -194,18 +203,19 @@ namespace GoFish
         public async void MakeOpponentMove()
         {
             Random random = new Random();
-            int numberAskingFor = game.Hands[2].Cards[random.Next(0, game.Hands[2].Cards.Count() - 1)].Number;
+            int cardId = random.Next(0, game.Hands[2].Cards.Count() - 1);
+            int numberAskingFor = game.Hands[2].Cards[cardId].Number;
+            opponentSelectedCardIndex = cardId;
 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
                 opponentChat.Text = "Do you have this card?";
+                Draw();
             });
 
             Thread.Sleep(2000);
             if (game.Hands[1].HasMatch(numberAskingFor))
-            {
-               
+            {               
                 //got'm
-
                 var cardsToSwap = new List<CardViewModel>();
                 foreach (CardViewModel c in game.Hands[1].Cards)
                 {
@@ -226,9 +236,10 @@ namespace GoFish
                     game.Hands[1].Cards.Remove(c);
                 }
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                    Draw();
-                    opponentChat.Text = "";
                     myChat.Text = "";
+                    opponentChat.Text = "";
+                    opponentSelectedCardIndex = -1;
+                    Draw();
                 });
                 
                 Thread.Sleep(2000);
@@ -254,8 +265,9 @@ namespace GoFish
                     game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
                 }
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                    opponentChat.Text = "";
                     myChat.Text = "";
+                    opponentChat.Text = "";
+                    opponentSelectedCardIndex = -1;
                     Draw();
                 });
             }

@@ -124,6 +124,23 @@ namespace GoFish
             await Task.Run(() => CardRequestSequenceMessages());            
         }
 
+        private async void HandleEndOfMoveSequence()
+        {
+            game.PostMoveRefresh();
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                Draw();
+            });
+            selectionLocked = false;
+
+            if (game.GameOver)
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    myChat.Text = "GAME OVER";
+                    opponentChat.Text = "GAME OVER";
+                });
+            }
+        }
+
         private async void CardRequestSequenceMessages()
         {
             selectionLocked = true;
@@ -162,6 +179,8 @@ namespace GoFish
                     opponentChat.Text = "";
                     myChat.Text = "";
                 });
+
+                HandleEndOfMoveSequence();
             }
             else
             {
@@ -178,6 +197,7 @@ namespace GoFish
                     game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
                 }
                 selectedCard = -1;
+                game.PostMoveRefresh();
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
                     Draw();
                     opponentChat.Text = "";
@@ -187,16 +207,6 @@ namespace GoFish
                 Thread.Sleep(2000);
 
                 MakeOpponentMove();
-            }
-            game.PostMoveRefresh();
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                Draw();
-            });
-            selectionLocked = false;
-
-            if (game.GameOver)
-            {
-                //end game here
             }
         }
 
@@ -244,7 +254,8 @@ namespace GoFish
                 
                 Thread.Sleep(2000);
 
-                game.PostMoveRefresh();
+                HandleEndOfMoveSequence();
+
                 if (game.Hands[2].Cards.Count() > 0)
                 {
                     MakeOpponentMove();
@@ -264,14 +275,16 @@ namespace GoFish
                     game.Hands[2].Cards.Add(game.Hands[0].Cards[0]);
                     game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
                 }
+                game.PostMoveRefresh();
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
                     myChat.Text = "";
                     opponentChat.Text = "";
                     opponentSelectedCardIndex = -1;
                     Draw();
                 });
+
+                HandleEndOfMoveSequence();
             }
-            game.PostMoveRefresh();
         }        
     }
 }

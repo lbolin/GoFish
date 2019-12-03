@@ -24,19 +24,19 @@ namespace GoFish.Models
                         cards.Add(c);
                     }
                 }
-            }
 
-            //shuffle the deck once it is created
-            Random random = new Random();
-            for (int i = 0; i < 5000; i++)
-            {
-                for (int j = 1; j < cards.Count; j++)
+                //shuffle the deck once it is created
+                Random random = new Random();
+                for (int i = 0; i < 5000; i++)
                 {
-                    if (random.Next(2) == 0)
+                    for (int j = 1; j < cards.Count; j++)
                     {
-                        Card temp = cards[j];
-                        cards[j] = cards[j - 1];
-                        cards[j - 1] = temp;
+                        if (random.Next(2) == 0)
+                        {
+                            Card temp = cards[j];
+                            cards[j] = cards[j - 1];
+                            cards[j - 1] = temp;
+                        }
                     }
                 }
             }

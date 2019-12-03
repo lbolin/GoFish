@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,6 +30,7 @@ namespace GoFish
         private GameViewModel game = new GameViewModel();
 
         private int selectedCard = -1;
+        private bool selectionLocked = false;
 
         public gamePlay()
         {
@@ -84,15 +87,16 @@ namespace GoFish
                 img.Height = 100;
                 deck.Children.Add(img);
             }
-
-
         }
 
         private void SelectCard(object sender, TappedRoutedEventArgs e)
         {
-            var card = ((sender as Image)?.Tag as CardViewModel);
-            selectedCard = card.Number * 10 + card.Suit;
-            Draw();
+            if (!selectionLocked)
+            {
+                var card = ((sender as Image)?.Tag as CardViewModel);
+                selectedCard = card.Number * 10 + card.Suit;
+                Draw();
+            }
         }
 
         public Image NewImage(string path)
@@ -106,9 +110,23 @@ namespace GoFish
             return img;
         }
         
-        public void RequestCard(object sender, TappedRoutedEventArgs e)
+        public async void RequestCard(object sender, TappedRoutedEventArgs e)
         {
-            if (game.Hands[2].HasMatch(selectedCard / 10)){
+            await Task.Run(() => CardRequestSequenceMessages());            
+        }
+
+        private async void CardRequestSequenceMessages()
+        {
+            selectionLocked = true;
+            //https://social.msdn.microsoft.com/Forums/windowsapps/en-US/4342b343-fc45-4638-a183-f5b77e1063ff/uwp-when-am-i-in-the-main-ui-thread
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                myChat.Text = "Do you have this card?";
+            });
+
+            Thread.Sleep(2000);
+
+            if (game.Hands[2].HasMatch(selectedCard / 10))
+            {
                 //got'm
                 var cardsToSwap = new List<CardViewModel>();
                 foreach (CardViewModel c in game.Hands[2].Cards)
@@ -118,36 +136,71 @@ namespace GoFish
                         cardsToSwap.Add(c);
                     }
                 }
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                   opponentChat.Text = "I have "+cardsToSwap.Count()+" of them.";
+                });
+
+                Thread.Sleep(1000);
 
                 foreach (var c in cardsToSwap)
                 {
                     game.Hands[1].Cards.Add(c);
                     game.Hands[2].Cards.Remove(c);
                 }
+                selectedCard = -1;
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    Draw();
+                    opponentChat.Text = "";
+                    myChat.Text = "";
+                });
             }
             else
             {
                 //Go Fish!
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    opponentChat.Text = "Go Fish! ";
+                });
+
+                Thread.Sleep(1000);
+
                 if (game.Hands[0].Cards.Count > 0)
                 {
                     game.Hands[1].Cards.Add(game.Hands[0].Cards[0]);
-                    game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);                    
+                    game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
                 }
+                selectedCard = -1;
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    Draw();
+                    opponentChat.Text = "";
+                    myChat.Text = "";
+                });
+
+                Thread.Sleep(2000);
 
                 MakeOpponentMove();
             }
             game.PostMoveRefresh();
-            Draw();
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                Draw();
+            });
+            selectionLocked = false;
         }
 
-        public void MakeOpponentMove()
+        public async void MakeOpponentMove()
         {
             Random random = new Random();
             int numberAskingFor = game.Hands[2].Cards[random.Next(0, game.Hands[2].Cards.Count() - 1)].Number;
 
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                opponentChat.Text = "Do you have this card?";
+            });
+
+            Thread.Sleep(2000);
             if (game.Hands[1].HasMatch(numberAskingFor))
             {
+               
                 //got'm
+
                 var cardsToSwap = new List<CardViewModel>();
                 foreach (CardViewModel c in game.Hands[1].Cards)
                 {
@@ -156,26 +209,52 @@ namespace GoFish
                         cardsToSwap.Add(c);
                     }
                 }
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    myChat.Text = "I have " + cardsToSwap.Count() + " of them.";
+                });
+
+                Thread.Sleep(1000);
 
                 foreach (var c in cardsToSwap)
                 {
                     game.Hands[2].Cards.Add(c);
                     game.Hands[1].Cards.Remove(c);
                 }
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    Draw();
+                    opponentChat.Text = "";
+                    myChat.Text = "";
+                });
+                
+                Thread.Sleep(2000);
 
                 game.PostMoveRefresh();
-                MakeOpponentMove();
+                if (game.Hands[2].Cards.Count() > 0)
+                {
+                    MakeOpponentMove();
+                }
             }
             else
             {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    myChat.Text = "Go Fish! ";
+                });
+
+                Thread.Sleep(1000);
+
                 //Go Fish!
                 if (game.Hands[0].Cards.Count > 0)
                 {
                     game.Hands[2].Cards.Add(game.Hands[0].Cards[0]);
                     game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
                 }
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    opponentChat.Text = "";
+                    myChat.Text = "";
+                    Draw();
+                });
             }
             game.PostMoveRefresh();
-        }
+        }        
     }
 }

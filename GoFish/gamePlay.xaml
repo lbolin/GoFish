@@ -15,7 +15,7 @@
         <StackPanel Orientation="Horizontal" Name="opponentCards" Height="150" VerticalAlignment="Top" HorizontalAlignment="Center"></StackPanel>
         <TextBlock Name="myScore" Text="0" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 140, 0, 0" FontSize="25"/>
         <TextBlock Name="opponentScore" Text="0" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0, 0, 140" FontSize="25"/>
-        <TextBlock Name="opponentChat" Text="?" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 130, 0, 0" FontSize="25"/>
-        <TextBlock Name="myChat" Text="?" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 130" FontSize="25"/>
+        <TextBlock Name="opponentChat" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 130, 0, 0" FontSize="25"/>
+        <TextBlock Name="myChat" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 130" FontSize="25"/>
     </Grid>
 </Page>

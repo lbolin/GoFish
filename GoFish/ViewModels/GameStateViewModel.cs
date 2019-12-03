@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoFish.ViewModels
 {
-    class GameState
+    class GameStateViewModel
     {
         private List<HighScore> highScores;
         public int Theme { get; }
@@ -15,7 +15,7 @@ namespace GoFish.ViewModels
 
         public int typeOfGame { get; }
 
-        public GameState(int theme,int deck, int numplayers)
+        public GameStateViewModel(int theme,int deck, int numplayers)
         {
             Theme = theme;
             Deck = deck;

@@ -8,10 +8,16 @@ namespace GoFish.Models
     class Game
     {
         public List<Hand> Hands { get; set; }
+        public List<int> Scores { get; set; }
 
         public Game()
         {
             Hands = new List<Hand>();
+            Scores = new List<int>(2);
+            for (int i = 0; i < Scores.Count(); i++)
+            {
+                Scores[i] = 0;
+            }
 
             Hand opponent= new Hand();
             Hand player = new Hand();

@@ -122,6 +122,7 @@ namespace GoFish
                 game.Hands[1].Cards.Add(game.Hands[0].Cards[0]);
                 game.Hands[0].Cards.Remove(game.Hands[0].Cards[0]);
             }
+            game.PostMoveRefresh();
             Draw();
         }
     }

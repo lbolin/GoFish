@@ -43,42 +43,13 @@ namespace GoFish.ViewModels
                 Scores.Add(score);
             }
 
-            /*for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Hands[1].Cards.Add(Hands[0].Cards[0]);
                 Hands[0].Cards.RemoveAt(0);
                 Hands[2].Cards.Add(Hands[0].Cards[0]);
                 Hands[0].Cards.RemoveAt(0);
-            }*/
-
-            List<CardViewModel> temp = new List<CardViewModel>();
-            while (Hands[0].Cards.Count() > 0)
-            {
-                if (Hands[0].Cards[0].Number == 0)
-                {
-                    if (Hands[0].Cards[0].Suit == 0 || Hands[0].Cards[0].Suit == 1)
-                    {
-                        Hands[2].Cards.Add(Hands[0].Cards[0]);
-                    }
-                    else
-                    {
-                        Hands[1].Cards.Add(Hands[0].Cards[0]);
-                    }
-                }
-                if (Hands[0].Cards[0].Number == 1)
-                {
-                    if (Hands[0].Cards[0].Suit == 0)
-                    {
-                        temp.Add(Hands[0].Cards[0]);
-                    }
-                    else
-                    {
-                        Hands[1].Cards.Add(Hands[0].Cards[0]);
-                    }
-                }
-                Hands[0].Cards.RemoveAt(0);
             }
-            Hands[0].Cards.Add(temp[0]);
         }
 
         public void PostMoveRefresh()

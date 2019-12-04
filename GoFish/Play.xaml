@@ -22,9 +22,5 @@
         <Button Content="Easy" Margin="362,175,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
         <Button Content="Medium" Margin="365,243,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
         <Button Content="Hard" Margin="368,317,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
-
-
-
-
     </Grid>
 </Page>

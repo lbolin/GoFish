@@ -12,6 +12,5 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
-        <TextBlock Name="HighScoreTextBox" HorizontalAlignment="Center"  Margin="0,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="738" Width="1232" Text="{Binding HighScore, Mode=TwoWay}" />
     </Grid>
 </Page>

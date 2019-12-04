@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-
-    <Grid Margin="0,3,0,-3" >
+    
+        <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
@@ -21,4 +21,5 @@
         <RadioButton GroupName="2" Content="Dark" FontSize="30" FontFamily="Constanta" Foreground ="Black" Checked="DarkRadioBtn_Checked"  Margin="15,536,0,0" VerticalAlignment="Top"/>
         <RadioButton GroupName="2" Content="Light" Margin="15,473,0,0" FontSize="36" FontFamily="Constanta" Foreground ="Black" VerticalAlignment="Top" Checked="LightRadioBtn_Checked" />
     </Grid>
+
 </Page>

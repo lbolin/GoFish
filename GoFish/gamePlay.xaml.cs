@@ -124,6 +124,67 @@ namespace GoFish
             await Task.Run(() => CardRequestSequenceMessages());            
         }
 
+        public int GetAIMove(int mode)
+        {
+            Random random = new Random();
+            if (mode == 0)
+            {
+                return random.Next(0, game.Hands[2].Cards.Count() - 1);
+            }
+            else if (mode == 1)
+            {
+                var cardItems = new List<int> ();
+                for (int i = 0; i < 13; i++) cardItems.Add(0);
+                foreach (var c in game.Hands[2].Cards) ++cardItems[c.Number];
+
+                int total = 0;
+                for (int i = 0; i < cardItems.Count(); i++)
+                {
+                    cardItems[i] *= cardItems[i];
+                    total += cardItems[i];
+                }
+                int value = random.Next(0, total - 1);
+                int current = 0;
+                int index = 0;
+                while (current <= value)
+                {
+                    current += cardItems[index];
+                    if (current <= value)
+                    {
+                        index++;
+                    }
+                }
+
+                int actualIndex = -1;
+                for (var i = 0; i < game.Hands[2].Cards.Count() && actualIndex == -1; i++)
+                {
+                    if (game.Hands[2].Cards[i].Number == index) actualIndex = i;
+                }
+                return actualIndex;
+            }
+            else if (mode == 2)
+            {
+                //Todo hard mode
+                return 0;
+            }
+            else
+            {
+                int index = -1;
+                for (int i = 0; i < game.Hands[2].Cards.Count(); i++)
+                {
+                    foreach (var theirCard in game.Hands[1].Cards)
+                    {
+                        if (index == -1 && game.Hands[2].Cards[i].Number == theirCard.Number) index = i;
+                    }
+                }
+                if (index == -1)
+                {
+                    index = random.Next(0, game.Hands[2].Cards.Count() - 1);
+                }
+                return index;
+            }
+        }
+
         private async void HandleEndOfMoveSequence()
         {
             game.PostMoveRefresh();
@@ -135,8 +196,17 @@ namespace GoFish
             if (game.GameOver)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
-                    myChat.Text = "GAME OVER";
                     opponentChat.Text = "GAME OVER";
+                    string text = "You tied!";
+                    if (game.Scores[0] > game.Scores[1])
+                    {
+                        text = "You won!";
+                    }
+                    else if (game.Scores[0] < game.Scores[1])
+                    {
+                        text = "You lost!";
+                    }
+                    myChat.Text = text;
                 });
             }
         }
@@ -212,8 +282,7 @@ namespace GoFish
 
         public async void MakeOpponentMove()
         {
-            Random random = new Random();
-            int cardId = random.Next(0, game.Hands[2].Cards.Count() - 1);
+            int cardId = GetAIMove(3);
             int numberAskingFor = game.Hands[2].Cards[cardId].Number;
             opponentSelectedCardIndex = cardId;
 

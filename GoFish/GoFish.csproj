@@ -136,7 +136,6 @@
     <Compile Include="Models\GameState.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\HighScore.cs" />
-    <Compile Include="Model\HighScore.cs" />
     <Compile Include="Play.xaml.cs">
       <DependentUpon>Play.xaml</DependentUpon>
     </Compile>

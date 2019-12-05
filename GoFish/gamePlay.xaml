@@ -17,5 +17,10 @@
         <TextBlock Name="opponentScore" Text="0" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 0, 0, 140" FontSize="25"/>
         <TextBlock Name="opponentChat" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 130, 0, 0" FontSize="25"/>
         <TextBlock Name="myChat" Text="" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 130" FontSize="25"/>
+        
+        <TextBlock Visibility="Collapsed" Name="nameLabel" Text="Name:" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50, 0, 0, 70" FontSize="25"/>
+        <TextBox Visibility="Collapsed" Name="nameTxt" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="150, 0, 0, 69" Background="White"></TextBox>
+        <TextBlock Visibility="Collapsed" Name="timeLabel" Text="Time: " TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="400, 0, 0, 70" FontSize="25"/>
+        <Button Visibility="Collapsed" x:Name="submitBtn" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150, 0, 0, 20" Tapped="SubmitBtn_Tapped">Submit</Button>
     </Grid>
 </Page>

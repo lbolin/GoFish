@@ -50,6 +50,22 @@ namespace GoFish.ViewModels
                 Hands[2].Cards.Add(Hands[0].Cards[0]);
                 Hands[0].Cards.RemoveAt(0);
             }
+
+            //The following is code that can be used in place of the previous for loop
+            //to view a very short game for testing purposes only
+
+            /*while (Hands[0].Cards.Count() > 0)
+            {
+                if (Hands[0].Cards[0].Number == 0 && Hands[0].Cards[0].Suit == 0)
+                {
+                    Hands[1].Cards.Add(Hands[0].Cards[0]);
+                }
+                else if (Hands[0].Cards[0].Number == 0)
+                {
+                    Hands[2].Cards.Add(Hands[0].Cards[0]);
+                }
+                Hands[0].Cards.RemoveAt(0);
+            }*/
         }
 
         public void PostMoveRefresh()

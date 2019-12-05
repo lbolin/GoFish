@@ -3,6 +3,7 @@ using GoFish.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -37,11 +38,16 @@ namespace GoFish
         private int selectedCard = -1;
         private bool selectionLocked = false;
 
+        //https://www.c-sharpcorner.com/uploadfile/kirtan007/measure-execution-time-of-code-in-C-Sharp/
+        Stopwatch sw = new Stopwatch();
+
         public gamePlay()
         {
             this.InitializeComponent();
             
             Draw();
+
+            sw.Start();
         }
 
         public void Draw()
@@ -200,6 +206,7 @@ namespace GoFish
             if (game.GameOver)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    sw.Stop();
                     opponentChat.Text = "GAME OVER";
                     string text = "You tied!";
                     if (game.Scores[0] > game.Scores[1])
@@ -211,6 +218,13 @@ namespace GoFish
                         text = "You lost!";
                     }
                     myChat.Text = text;
+
+                    timeLabel.Text += ((int)(sw.ElapsedMilliseconds / 1000)).ToString();
+
+                    nameLabel.Visibility = Visibility.Visible;
+                    nameTxt.Visibility = Visibility.Visible;
+                    timeLabel.Visibility = Visibility.Visible;
+                    submitBtn.Visibility = Visibility.Visible;                    
                 });
             }
         }
@@ -372,6 +386,44 @@ namespace GoFish
             {
                 string json = ApplicationData.Current.LocalSettings.Values["gameState"] as string;
                 gameState = JsonConvert.DeserializeObject<GameStateViewModel>(json);
+            }
+        }
+
+        private void SubmitBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (nameTxt.Text != "")
+            {
+                gameState.HighScores.Add(new HighScoreViewModel(new Model.HighScore(nameTxt.Text, game.Scores[0], (int)(sw.ElapsedMilliseconds / 1000))));
+
+                bool done = false;
+                int currentIndex = gameState.HighScores.Count() - 1;
+                while (!done)
+                {
+                    if (currentIndex == 0)
+                    {
+                        done = true;
+                    }
+                    else if (gameState.HighScores[currentIndex].Books > gameState.HighScores[currentIndex - 1].Books ||
+                        (gameState.HighScores[currentIndex].Books == gameState.HighScores[currentIndex - 1].Books &&
+                        gameState.HighScores[currentIndex].Time < gameState.HighScores[currentIndex - 1].Time))
+                    {
+                        var temp = gameState.HighScores[currentIndex];
+                        gameState.HighScores[currentIndex] = gameState.HighScores[currentIndex - 1];
+                        gameState.HighScores[currentIndex - 1] = temp;
+                        currentIndex--;
+                    }
+                    else
+                    {
+                        done = true;
+                    }
+                }
+                while (gameState.HighScores.Count > 10)
+                {
+                    gameState.HighScores.RemoveAt(10);
+                }
+
+                nameTxt.IsEnabled = false;
+                submitBtn.IsEnabled = false;
             }
         }
     }

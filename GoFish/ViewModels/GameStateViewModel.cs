@@ -13,8 +13,9 @@ namespace GoFish.ViewModels
         private GameState gameState;
 
         public ObservableCollection<HighScoreViewModel> HighScores;
-        public bool UsingLightTheme { get; }
-        public bool UsingWoodlandDeck { get; }
+        public bool UsingLightTheme { get; set; }
+        public bool UsingWoodlandDeck { get; set; }        
+        public int AIDifficulty { get; set; }
 
         public GameStateViewModel()
         {
@@ -22,6 +23,7 @@ namespace GoFish.ViewModels
 
             UsingLightTheme = true;
             UsingWoodlandDeck = true;
+            AIDifficulty = 0;
 
             HighScores = new ObservableCollection<HighScoreViewModel>();
             foreach (var hs in gameState.HighScores)

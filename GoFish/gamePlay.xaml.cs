@@ -43,11 +43,7 @@ namespace GoFish
 
         public gamePlay()
         {
-            this.InitializeComponent();
-            
-            Draw();
-
-            sw.Start();
+            this.InitializeComponent();            
         }
 
         public void Draw()
@@ -59,12 +55,14 @@ namespace GoFish
             opponentCards.Children.Clear();
             deck.Children.Clear();
 
+            string cardDeck = "Woodland";
+            if (!gameState.UsingWoodlandDeck) cardDeck = "Sea";
             foreach (var card in game.Hands[1].Cards)
             {
                 string cardNumber = card.Number.ToString();
                 if (cardNumber.Length == 1) cardNumber = "0" + cardNumber;
-                                
-                var newCard = NewImage("Assets/Woodland/" + cardNumber + "-" + card.Suit + ".png");
+
+                var newCard = NewImage("Assets/" + cardDeck + "/" + cardNumber + "-" + card.Suit + ".png");
                 if (card.Number == selectedCard / 10 && card.Suit == selectedCard % 10)
                 {
                     newCard.Width = 80;
@@ -81,15 +79,17 @@ namespace GoFish
                 myCards.Children.Add(newCard);
             }
 
+            string backType = "1";
+            if (!gameState.UsingWoodlandDeck) backType = "2";
             for (int i = 0; i < game.Hands[2].Cards.Count(); i++)
             {
-                var newCard = NewImage("Assets/images/back1.png");
+                var newCard = NewImage("Assets/images/back" + backType + ".png");
                 
                 if (i == opponentSelectedCardIndex)
                 {
                     string number = game.Hands[2].Cards[i].Number.ToString();
                     if (number.Length == 1) number = "0" + number;
-                    newCard = NewImage("Assets/Woodland/" + number + "-" + game.Hands[2].Cards[i].Suit.ToString() + ".png");
+                    newCard = NewImage("Assets/" + cardDeck + "/" + number + "-" + game.Hands[2].Cards[i].Suit.ToString() + ".png");
                 }
                 newCard.Width = 65;
                 newCard.Height = 90;
@@ -100,7 +100,7 @@ namespace GoFish
 
             if (game.Hands[0].Cards.Count() != 0)
             {
-                var img = NewImage("Assets/images/back1.png");
+                var img = NewImage("Assets/images/back" + backType + ".png");
                 img.Width = 100;
                 img.Height = 100;
                 deck.Children.Add(img);
@@ -171,11 +171,6 @@ namespace GoFish
                     if (game.Hands[2].Cards[i].Number == index) actualIndex = i;
                 }
                 return actualIndex;
-            }
-            else if (mode == 2)
-            {
-                //Todo hard mode
-                return 0;
             }
             else
             {
@@ -300,7 +295,7 @@ namespace GoFish
 
         public async void MakeOpponentMove()
         {
-            int cardId = GetAIMove(3);
+            int cardId = GetAIMove(gameState.AIDifficulty);
             int numberAskingFor = game.Hands[2].Cards[cardId].Number;
             opponentSelectedCardIndex = cardId;
 
@@ -386,7 +381,22 @@ namespace GoFish
             {
                 string json = ApplicationData.Current.LocalSettings.Values["gameState"] as string;
                 gameState = JsonConvert.DeserializeObject<GameStateViewModel>(json);
+
+                if (!gameState.UsingLightTheme)
+                {
+                    mainGrid.Background = new SolidColorBrush(Windows.UI.Colors.DarkBlue);
+                    tableCircle.Fill = new SolidColorBrush(Windows.UI.Colors.Green);
+                    myChat.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+                    opponentChat.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+                    nameLabel.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+                    timeLabel.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+                    submitBtn.Background = new SolidColorBrush(Windows.UI.Colors.LightGray);
+                }                
             }
+
+            Draw();
+
+            sw.Start();
         }
 
         private void SubmitBtn_Tapped(object sender, TappedRoutedEventArgs e)

@@ -393,7 +393,7 @@ namespace GoFish
         {
             if (nameTxt.Text != "")
             {
-                gameState.HighScores.Add(new HighScoreViewModel(new Model.HighScore(nameTxt.Text, game.Scores[0], (int)(sw.ElapsedMilliseconds / 1000))));
+                gameState.HighScores.Add(new HighScoreViewModel(new Models.HighScore(nameTxt.Text, game.Scores[0], (int)(sw.ElapsedMilliseconds / 1000))));
 
                 bool done = false;
                 int currentIndex = gameState.HighScores.Count() - 1;

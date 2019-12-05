@@ -21,8 +21,9 @@ namespace GoFish.ViewModels
             gameState = new GameState();
 
             UsingLightTheme = true;
-            UsingWoodlandDeck = true;                
-            
+            UsingWoodlandDeck = true;
+
+            HighScores = new ObservableCollection<HighScoreViewModel>();
             foreach (var hs in gameState.HighScores)
             {
                 HighScores.Add(new HighScoreViewModel(hs));

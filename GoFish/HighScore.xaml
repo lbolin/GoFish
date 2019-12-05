@@ -5,12 +5,40 @@
     xmlns:local="using:GoFish"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:GoFish.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
-        </Grid.Background>
+    <Grid Background="Beige">
+        <TextBlock Text="High Scores" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 15, 0, 0" FontSize="35"></TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="60, 75, 0, 0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock Text="Name" Width="220"></TextBlock>
+            <TextBlock Text="Books" Width="150"></TextBlock>
+            <TextBlock Text="Time" Width="150"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="25, 110, 0, 0" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock Text="1" Height="40"></TextBlock>
+            <TextBlock Text="2" Height="40"></TextBlock>
+            <TextBlock Text="3" Height="40"></TextBlock>
+            <TextBlock Text="4" Height="40"></TextBlock>
+            <TextBlock Text="5" Height="40"></TextBlock>
+            <TextBlock Text="6" Height="40"></TextBlock>
+            <TextBlock Text="7" Height="40"></TextBlock>
+            <TextBlock Text="8" Height="40"></TextBlock>
+            <TextBlock Text="9" Height="40"></TextBlock>
+            <TextBlock Text="10" Height="40"></TextBlock>
+        </StackPanel>
+        <ListView x:Name="movieListView" Margin="50, 100, 40, 40" BorderBrush="Black" BorderThickness="3"
+            ItemsSource="{x:Bind gameState.HighScores}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local1:HighScoreViewModel">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Bind Name}" FontWeight="Bold" Width="220"/>
+                        <TextBlock Text="{x:Bind Books}" Width="150"/>
+                        <TextBlock Text="{x:Bind Time}" Width="150"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

@@ -13,14 +13,10 @@
             <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
         </Grid.Background>
         <Image  VerticalAlignment="Top" Source="Assets/images/gofishlogo.png" Height="75" Margin="0,16,0,0"/>
-        <Button Content="Play" Margin="70,0,0,0" FontSize="40" Height="68" Width="422" Click="PlayGameBtn_Click"/>
-        <Button Content="1 Player" Margin="70,175,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
-        <Button Content="2 Players" Margin="69,243,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
-        <Button Content="3 Players" Margin="69,317,0,0" Width="150" FontFamily="Constanta" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="37,108,0,0" Text="Number of Players:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="48" Width="259" FontFamily="Constanta" FontSize="30"/>
-        <TextBlock HorizontalAlignment="Left" Margin="367,106,0,0" Text="Card Theme:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="30" Width="175" FontFamily="Constanta" FontSize="30"/>
-        <Button Content="Easy" Margin="362,175,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
-        <Button Content="Medium" Margin="365,243,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
-        <Button Content="Hard" Margin="368,317,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <Button VerticalAlignment="Top" Content="Play" Margin="70,400,0,0" FontSize="40" Height="68" Width="422" Click="PlayGameBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="100,106,0,0" Text="Card Theme:" TextWrapping="Wrap" VerticalAlignment="Top"  Height="30" Width="175" FontFamily="Constanta" FontSize="30"/>
+        <Button Content="Easy" Margin="102,175,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <Button Content="Medium" Margin="105,243,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
+        <Button Content="Hard" Margin="108,317,0,0" VerticalAlignment="Top" Width="150" FontFamily="Constanta"/>
     </Grid>
 </Page>

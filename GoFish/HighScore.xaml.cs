@@ -1,10 +1,14 @@
-﻿using System;
+﻿using GoFish.ViewModels;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,9 +26,26 @@ namespace GoFish
     /// </summary>
     public sealed partial class HighScore : Page
     {
+        private GameStateViewModel gameState = new GameStateViewModel();
+
         public HighScore()
-        {
+        {            
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            string json = JsonConvert.SerializeObject(gameState);
+            ApplicationData.Current.LocalSettings.Values["gameState"] = json;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("gameState"))
+            {
+                string json = ApplicationData.Current.LocalSettings.Values["gameState"] as string;
+                gameState = JsonConvert.DeserializeObject<GameStateViewModel>(json);
+            }
         }
     }
 }

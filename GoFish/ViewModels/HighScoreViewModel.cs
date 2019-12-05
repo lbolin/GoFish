@@ -11,14 +11,16 @@ namespace GoFish.ViewModels
     {
         private Models.HighScore highScore;
 
-        public string Name { get; }
-        public int Books { get; }
-        public int Time { get; }
+        public string Name { get; set; }
+        public int Books { get; set; }
+        public int Time { get; set; }
 
         public HighScoreViewModel(Models.HighScore hs)
         {
             highScore = hs;
+            Name = hs?.Name;
+            Books = hs?.Books ?? 0;
+            Time = hs?.Time ?? 0;
         }
     }
-    //try something
 }

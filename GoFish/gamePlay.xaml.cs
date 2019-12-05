@@ -1,4 +1,6 @@
-﻿using GoFish.ViewModels;
+﻿using GoFish.Models;
+using GoFish.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +30,7 @@ namespace GoFish
     /// </summary>
     public sealed partial class gamePlay : Page
     {
+        private GameStateViewModel gameState = new GameStateViewModel();
         private GameViewModel game = new GameViewModel();
 
         private int opponentSelectedCardIndex = -1;
@@ -354,6 +358,21 @@ namespace GoFish
 
                 HandleEndOfMoveSequence();
             }
-        }        
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            string json = JsonConvert.SerializeObject(gameState);
+            ApplicationData.Current.LocalSettings.Values["gameState"] = json;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey("gameState"))
+            {
+                string json = ApplicationData.Current.LocalSettings.Values["gameState"] as string;
+                gameState = JsonConvert.DeserializeObject<GameStateViewModel>(json);
+            }
+        }
     }
 }

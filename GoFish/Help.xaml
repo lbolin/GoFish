@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="GoFish.Help"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GoFish"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="Beige">
+        <StackPanel>
+            <TextBlock Text="How to Play Go Fish" TextWrapping="Wrap" Width="150" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <TextBlock Text="THE PACK" Width="90" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <TextBlock Text="The standard 52-card pack is used. Some cards will be dealt and the rest will form the stock pile." Width="602" Height="32" HorizontalAlignment="Center"/>
+            <TextBlock Text="OBJECT OF THE GAME" Width="142" Height="29" HorizontalAlignment="Center"/>
+            <TextBlock Text="The goal is to win the most books of cards. A book is any four of a kind" Width="452" Height="52" HorizontalAlignment="Center"/>
+            <TextBlock Text="PLAY" Width="41" Height="44" HorizontalAlignment="Center"/>
+            <TextBlock Text="The player to the left of the dealer looks directly at any opponent and says, for example, Give me your kings, usually addressing the opponent by name and specifying the rank that they want, from ace down to two. The player who is fishing must have at least one card of the rank that was asked 
+                       for in their hand. The player who is addressed must hand over all the cards requested. If the player has none, they say, Go fish! and the player
+                       who made the request draws the top card of the stock and places it in their hand.
+
+                        If a player gets one or more cards of the named rank that was asked for, they are entitled to ask the same or another player for a card. The player 
+                       can ask for the same 
+                       card or a different one. So long as the player succeeds in getting cards (makes a catch), their turn continues. When a player makes a catch, they must 
+                       reveal the card so that the catch is verified. If a player gets the fourth card of a book, the player shows all four cards, places them on the table face up in front of everyone, and plays again.
+
+                       If the player goes fishing without making a catch (does not receive a card he asked for), the turn passes to the left.
+
+                       The game ends when all thirteen books have been won. The winner is the player with the most books. During the game, if a player is left without cards, 
+                       they may (when it's their turn to play), draw from the stock and then ask for cards of that rank. If there are no cards left in the stock, they are
+                       out of the game." Width="995" Height="416" HorizontalAlignment="Center" SelectionChanged="TextBlock_SelectionChanged"/>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

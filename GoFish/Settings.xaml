@@ -8,10 +8,8 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
 
-    <Grid Margin="0,3,0,-3" >
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/images/water.jpeg"></ImageBrush>
-        </Grid.Background>
+    <Grid Margin="0,3,0,-3" Background="Beige">
+        
         <TextBlock HorizontalAlignment="Left"  Text="Settings" TextWrapping="Wrap"   VerticalAlignment="Top" Height="123" Width="288" FontSize="80" FontFamily="Constantia" Foreground="Black" Margin="110,0,0,0" />
         <TextBlock HorizontalAlignment="Left" Margin="15,121,0,0" Text="Card Style :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Constantia" Foreground="Black" />
         <TextBlock HorizontalAlignment="Left" Text="Mode :" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Constantia" Foreground="Black" Margin="9,370,0,0" />

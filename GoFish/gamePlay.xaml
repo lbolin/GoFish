@@ -22,5 +22,6 @@
         <TextBox Visibility="Collapsed" Name="nameTxt" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" Margin="150, 0, 0, 69" Background="White"></TextBox>
         <TextBlock Visibility="Collapsed" Name="timeLabel" Text="Time: " TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="400, 0, 0, 70" FontSize="25"/>
         <Button Visibility="Collapsed" x:Name="submitBtn" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150, 0, 0, 20" Tapped="SubmitBtn_Tapped">Submit</Button>
+        <Button x:Name="helpBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 20, 20, 0" Tapped="HelpBtn_Tapped">Help</Button>
     </Grid>
 </Page>

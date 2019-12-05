@@ -426,5 +426,10 @@ namespace GoFish
                 submitBtn.IsEnabled = false;
             }
         }
+
+        private void HelpBtn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            //this.Frame.Navigate(typeof(Help));
+        }
     }
 }
